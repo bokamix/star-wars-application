@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>star-wars-app</title>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="Webpack basic starter project">
+    <meta name="Description" content="A simple webpack starter project for your basic web development needs." />
+
+    <!-- Mobile header color for Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="black">
+    <!-- Mobile header color Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="black">
+    <!-- Mobile header color for iOS Safari (supports black, black-translucent or default) -->
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <main id="AppWrapper" class="AppWrapper">
+        
+        <div id="TerminalWrapper" class="TerminalWrapper">
+            <h2 id="MainTitle" class="MainTitle"></h2>
+            <p id="MainSlogan"></p>
+              <div id="SearchWrapper"><input id="FindPerson" onchange="letsSearch()" type="text" name="fname"  type="text" autocomplete="off" >
+              <div id="SearchResults"></div></div>
+              <div id="PersonCard"></div>
+                
+            
+        </div>
+
+    </main>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

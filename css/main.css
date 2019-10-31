@@ -1,0 +1,160 @@
+ 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One&display=swap');
+*{
+    box-sizing: border-box;
+    font-family: 'Pathway Gothic One', sans-serif!important;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+p{
+    font-size: 15px;
+    font-weight: 500;
+    color:#949494
+}
+/* ==========================================================================
+    Styles
+   ========================================================================== */
+   .TerminalWrapper{
+       width: 60%;
+       margin:0 auto;
+       background:#EBE4E4 ;
+       height: 700px;
+       border: solid 20px #0B5256;
+       border-radius: 30px;
+       text-align: center;
+       margin-top:30px;
+   }
+
+   .MainTitle{
+       color:goldenrod;
+       text-transform: uppercase;
+       font-weight: bold;
+       font-size: 40px;
+       margin-block-start: 0em;
+       margin-block-end: 0em;
+       margin-top:20px;
+   }
+   #SearchResults{
+       width:300px;
+       background: white;
+       margin:0 auto;
+       overflow-y:scroll;
+       max-height: 100px;
+       position:absolute;
+       left: 50%;
+       transform: translate(-50%, 0);
+      
+   }
+
+#SearchResults::-webkit-scrollbar {
+    width: 2px;
+  }
+   #SearchResults>p{
+    padding:10px;
+    border-bottom:1px #ebe4e4 solid;
+    cursor: pointer;
+}
+.ElementList:hover{
+    color:black;
+}
+   #FindPerson{
+       width:300px;
+       margin-top:30px;   
+       
+   }
+   #SearchWrapper{
+       position:relative;
+   }
+   #PersonCard{
+     
+       width:300px;
+       height:300px;
+       margin: 0 auto;
+       margin-top:30px;      
+   }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 1400px) {
+    .TerminalWrapper{
+        width: 35%;
+        
+    }
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
