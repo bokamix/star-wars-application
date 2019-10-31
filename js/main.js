@@ -119,6 +119,7 @@ SearchResults.addEventListener("click", e => {
             <p>${person.birth_year}</p>
             <p>${person.eye_color}</p>
             <p>Bounty: 0$</p>
+            <p>Add Bounty</p>
             `;
         }
     });

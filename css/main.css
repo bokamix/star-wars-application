@@ -54,11 +54,18 @@ p{
     font-weight: 500;
     color:#949494
 }
+h3{
+    font-size: 20px;
+    font-weight: 700;
+    color:#949494;
+    margin:4px;
+    margin-top:30px;
+}
 /* ==========================================================================
     Styles
    ========================================================================== */
    .TerminalWrapper{
-       width: 60%;
+       width: 90%;
        margin:0 auto;
        background:#EBE4E4 ;
        height: 700px;
@@ -78,7 +85,7 @@ p{
        margin-top:20px;
    }
    #SearchResults{
-       width:300px;
+       width:80%;
        background: white;
        margin:0 auto;
        overflow-y:scroll;
@@ -101,8 +108,8 @@ p{
     color:black;
 }
    #FindPerson{
-       width:300px;
-       margin-top:30px;   
+       width:80%;
+       margin-top:15px;   
        
    }
    #SearchWrapper{
@@ -110,7 +117,7 @@ p{
    }
    #PersonCard{
      
-       width:300px;
+       width:80%;  
        height:300px;
        margin: 0 auto;
        margin-top:30px;      
@@ -141,12 +148,27 @@ p{
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 1400px) {
+
+@media only screen and (min-width: 600px) {
+  
     .TerminalWrapper{
-        width: 35%;
-        
+        width: 60%;
+       
     }
 }
+
+@media only screen and (min-width: 1300px) {
+    .TerminalWrapper{
+        width: 35%;   
+    }
+    .TerminalWrapper{
+        width: 40%;
+       
+    }
+  
+}
+
+
 
 @media print,
        (-o-min-device-pixel-ratio: 5/4),
