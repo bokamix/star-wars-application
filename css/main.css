@@ -25,7 +25,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
+    background-image: url(../img/galaxy.jpg);
 }
 ol, ul {
 	list-style: none;
@@ -68,7 +69,7 @@ h3{
        width: 90%;
        margin:0 auto;
        background:#EBE4E4 ;
-       height: 700px;
+       height: 550px;
        border: solid 20px #0B5256;
        border-radius: 30px;
        text-align: center;
@@ -89,7 +90,7 @@ h3{
        background: white;
        margin:0 auto;
        overflow-y:scroll;
-       max-height: 100px;
+       max-height: 112px;
        position:absolute;
        left: 50%;
        transform: translate(-50%, 0);
