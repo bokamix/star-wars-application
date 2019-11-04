@@ -26,7 +26,11 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
-    background-image: url(../img/galaxy.jpg);
+    background:black;
+    background-image: url(../img/destroyer.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:white;
 }
 ol, ul {
 	list-style: none;
@@ -65,17 +69,29 @@ h3{
 /* ==========================================================================
     Styles
    ========================================================================== */
-   .TerminalWrapper{
-       width: 90%;
+   
+   
+   #TerminalWrapper{
+      
        margin:0 auto;
-       background:#EBE4E4 ;
-       height: 550px;
-       border: solid 20px #0B5256;
-       border-radius: 30px;
+       padding-top:50px;
+       width:80%;
+       background-image: url(../img/milenium.png);
+       background-size: contain;
+       background-repeat: no-repeat;  
+       background-position: center center;
        text-align: center;
-       margin-top:30px;
+       padding: 128px;
+       display: flex;
+       justify-content: center;
+    
    }
 
+   #MainWrapper{
+       width: 300px;
+       margin-left:40%;
+
+   }
    .MainTitle{
        color:goldenrod;
        text-transform: uppercase;
@@ -106,7 +122,7 @@ h3{
     cursor: pointer;
 }
 .ElementList:hover{
-    color:black;
+    color:white;
 }
    #FindPerson{
        width:80%;
@@ -115,13 +131,6 @@ h3{
    }
    #SearchWrapper{
        position:relative;
-   }
-   #PersonCard{
-     
-       width:80%;  
-       height:300px;
-       margin: 0 auto;
-       margin-top:30px;      
    }
 
 /* width */
@@ -146,26 +155,64 @@ h3{
 
 
 /* ==========================================================================
+   Table
+   ========================================================================== */
+#PersonCard{
+    display: flex;
+    text-align: left;
+    width:80%;
+    margin:0 auto;
+    word-wrap: break-word;
+}
+.ListItem{
+    background: rgb(180, 184, 221);
+    color: white;
+    font-weight: 500;
+    padding: 2px 0;
+    height: 30px;
+    width:160px;
+    
+}
+.ListHeader{
+    background: rgb(84, 99, 230);
+    color: white;
+    font-weight: 500;
+    padding: 2px 0;
+    height: 30px;
+    width:160px;
+}
+#InfoTable{
+    display: flex;
+    width:100%;  
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+#PersonCard{
+     
+    width:80%;       
+    margin: 0 auto;
+    margin-top:30px;     
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+
+.PersonCardMenu{
+ width:33%;
+ text-align: center;
+}
+/* ==========================================================================
    Media Queries
    ========================================================================== */
 
 
 @media only screen and (min-width: 600px) {
   
-    .TerminalWrapper{
-        width: 60%;
-       
-    }
+   
 }
 
 @media only screen and (min-width: 1300px) {
-    .TerminalWrapper{
-        width: 35%;   
-    }
-    .TerminalWrapper{
-        width: 40%;
-       
-    }
+ 
   
 }
 
@@ -181,3 +228,7 @@ h3{
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
+   .DisplayNone{
+       display:none;
+   }

@@ -16,30 +16,39 @@
     <!-- Mobile header color for iOS Safari (supports black, black-translucent or default) -->
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
 </head>
 
 <body>
 
     <main id="AppWrapper" class="AppWrapper">
-
         <div id="TerminalWrapper" class="TerminalWrapper">
-            <h2 id="MainTitle" class="MainTitle"></h2>
-            <p id="MainSlogan"></p>
-            <div id="SearchWrapper">
-                <h3>Find Person</h3>
-                <input id="FindPerson" onchange="letsSearch()" type="text" name="fname" type="text" autocomplete="off">
-                <div id="SearchResults"></div>
+            <div id="MainWrapper">
+            <div id="AllPersonsButton">All Characters</div>
+            <h2 id="MainTitle" class="MainTitle">Bountyfy!</h2>
+            <p id="MainSlogan">Catch or kill and earn money!</p>
+            <div id="ContentContainer">
+                <div id="CharacterFinder">
+                    <div id="SearchWrapper">
+                        <h3>Find Person</h3>
+                        <input id="FindPerson" onchange="letsSearch()" type="text" name="fname" type="text"
+                            autocomplete="off">
+                        <div id="SearchResults"></div>
+                    </div>
+                    <div id="PersonCard">
+
+                    </div>
+                </div>
             </div>
-            <div id="PersonCard"></div>
 
-
+        </div>
         </div>
 
     </main>
     <script src="js/main.js"></script>
+
 
 </body>
 
