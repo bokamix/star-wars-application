@@ -25,12 +25,11 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-    line-height: 1;
-    background:black;
-    background-image: url(../img/destroyer.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    line-height: 1;   
+    background-image: url(../img/galaxy.jpg);
+    background-repeat: repeat;   
     color:white;
+ 
 }
 ol, ul {
 	list-style: none;
@@ -69,29 +68,35 @@ h3{
 /* ==========================================================================
     Styles
    ========================================================================== */
-   
-   
-   #TerminalWrapper{
-      
-       margin:0 auto;
-       padding-top:50px;
-       width:80%;
-       background-image: url(../img/milenium.png);
-       background-size: contain;
-       background-repeat: no-repeat;  
-       background-position: center center;
+  #AppWrapper{
+    margin-top:50px;
+  }
+   #TerminalWrapper{      
+       margin:0 auto;            
        text-align: center;
-       padding: 128px;
+       padding:80px 50px;
        display: flex;
-       justify-content: center;
-    
+       justify-content: center;   
    }
 
+  
    #MainWrapper{
-       width: 300px;
-       margin-left:40%;
-
+    width:80%;
+    border:solid red 4px;
+    margin: 0 auto;
+    padding:20px;
+    padding-top:20px;
+    border-radius: 30px;
+    background-color: rgb(7, 14, 21);
+    box-shadow: 0 0 15px #d35400;
+    position: relative;
    }
+
+   #MileniumImg{
+    width:400px;
+     
+    pointer-events: none;
+}
    .MainTitle{
        color:goldenrod;
        text-transform: uppercase;
@@ -157,29 +162,30 @@ h3{
 /* ==========================================================================
    Table
    ========================================================================== */
-#PersonCard{
+
+   #PersonCard{
     display: flex;
     text-align: left;
-    width:80%;
+    width:95%;
     margin:0 auto;
     word-wrap: break-word;
 }
 .ListItem{
-    background: rgb(180, 184, 221);
+   
     color: white;
     font-weight: 500;
     padding: 2px 0;
-    height: 30px;
-    width:160px;
+    height: 40px;
+    width:140px;
     
 }
 .ListHeader{
-    background: rgb(84, 99, 230);
+   
     color: white;
     font-weight: 500;
     padding: 2px 0;
-    height: 30px;
-    width:160px;
+    height: 40px;
+    width:140px;
 }
 #InfoTable{
     display: flex;
@@ -200,20 +206,59 @@ h3{
 .PersonCardMenu{
  width:33%;
  text-align: center;
+ margin-bottom: 30px;
+}
+
+#AllPersonWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:5px;
+}
+.PersonItem{    
+    padding:5px;
+}
+.PersonItem::after{
+    content: ',';
 }
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
 
-@media only screen and (min-width: 600px) {
-  
+@media only screen and (min-width: 1300px) {
+  body{
+    background:black;
+    background-image: url(../img/destroyer.jpg);  
+    background-repeat: no-repeat;
+  }
+    #MileniumImg{
+      width:100%;
+      position: absolute;
+      top:0;
+      left:-400px;
+      pointer-events: none;
+  }
    
 }
 
-@media only screen and (min-width: 1300px) {
- 
-  
+@media only screen and (min-width: 1500px) {
+ body{
+     background-size: cover;
+     
+ }
+}
+
+@media only screen and (min-width: 610px){
+    #MainWrapper{
+        width: 500px;
+        border:solid red 4px;
+        margin: 0 auto;
+        padding:60px;
+        padding-top:20px;
+        border-radius: 30px;
+        background-color: rgb(7, 14, 21);
+        box-shadow: 0 0 15px #d35400;
+       }
 }
 
 
@@ -230,5 +275,5 @@ h3{
    ========================================================================== */
 
    .DisplayNone{
-       display:none;
+       display:none!important;
    }

@@ -103,6 +103,7 @@ AllPersonsButton.addEventListener("click", e => {
         getAllPersons().then(respone => {
             persons.forEach(function(person) {
                 let personP = document.createElement("p");
+                personP.setAttribute("class", `PersonItem`);
                 personP.innerHTML = `${person.name}`;
                 AllPersonWrapper.appendChild(personP);
             });
