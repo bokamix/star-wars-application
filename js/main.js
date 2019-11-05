@@ -45,10 +45,7 @@ InfoTable.appendChild(PersonCardInfo);
 //////////////////////////////////////////////////////
 
 MainTitle.addEventListener("click", e => {
-    if (!AllPersonWrapper.classList.contains("DisplayNone")) {
-        AllPersonWrapper.classList.add("DisplayNone");
-    }
-    CharacterFinder.classList.remove("DisplayNone");
+    location.reload();
 });
 
 PersonalInfoButton.addEventListener("click", e => {
@@ -82,9 +79,9 @@ SpeciesInfoButton.addEventListener("click", e => {
         0
     );
 });
-VehiclesInfoButton.addEventListener("click", e => {    
-    InfoTable.classList.add("ShowInfoTable");   
-     
+
+const showVehicles =(e)=>{
+  
     TableGenerator(
         ChoosenPersonData.vehicles,
         [
@@ -100,16 +97,35 @@ VehiclesInfoButton.addEventListener("click", e => {
             "passengers",
             "vehicle_class"
         ],
-        0
+        e-1
     );
+    if(ChoosenPersonData.vehicles.length == 0){       
+        let emptyTable = document.createElement('p');
+        emptyTable.innerHTML = "That table is empty";
+        InfoTable.appendChild(emptyTable);
+    }
+    let cardsNumberWrapper = document.createElement("div");
+    cardsNumberWrapper.setAttribute("class", `CardsNumberWrapper`);
+    InfoTable.prepend(cardsNumberWrapper)
+for (let i=0; i<ChoosenPersonData.vehicles.length; i++) {
    
+    let numberOfCard = document.createElement("p");
+    numberOfCard.innerHTML = `${i+1}`
+    cardsNumberWrapper.appendChild(numberOfCard)
+    numberOfCard.addEventListener("click", e => { showVehicles(e.target.innerHTML)})
+    }
 
 
+}
+
+VehiclesInfoButton.addEventListener("click", e => {    
+    InfoTable.classList.add("ShowInfoTable");  
+    showVehicles(1)
 
 });
 
-function showStarships(e){
-    TableGenerator(
+const showStarships =(e)=>{
+       TableGenerator(
         ChoosenPersonData.starships,
         [
             "name",
@@ -127,16 +143,30 @@ function showStarships(e){
         ],
         e-1
     );
-
-  
+    if(ChoosenPersonData.starships.length == 0){       
+        let emptyTable = document.createElement('p');
+        emptyTable.innerHTML = "That table is empty";
+        InfoTable.appendChild(emptyTable);
+    }
+    let cardsNumberWrapper = document.createElement("div");
+    cardsNumberWrapper.setAttribute("class", `CardsNumberWrapper`);
+    InfoTable.prepend(cardsNumberWrapper)
+for (let i=0; i<ChoosenPersonData.starships.length; i++) {
+   
+    let numberOfCard = document.createElement("p");
+    numberOfCard.innerHTML = `${i+1}`
+    cardsNumberWrapper.appendChild(numberOfCard)
+    numberOfCard.addEventListener("click", e => { showStarships(e.target.innerHTML)})
+    }  
 }
 
 
 StarshipsInfoButton.addEventListener("click", e => {    
-    InfoTable.classList.add("ShowInfoTable");
-   
+    InfoTable.classList.add("ShowInfoTable");   
     showStarships(1)
-   
+       
+
+
 });
 
 let lodash = 0;
