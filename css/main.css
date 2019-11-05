@@ -200,27 +200,39 @@ h3{
     color: white;
     font-weight: 500;
     padding: 2px 0;
-    height: 40px;
-    width:140px;
-    
+    height: 40px;  
+    font-size: 13px;
 }
 .ListHeader{
    
     color: white;
     font-weight: 500;
     padding: 2px 0;
-    height: 40px;
-    width:140px;
+    height: 40px;  
+    font-size: 13px;
 }
+#PersonHeaderList{
+    width: 46%;
+    
+}
+#PersonItemList{
+    width: 46%;
+}
+
+
 #InfoTable{
     display: flex;
-    width:100%;  
-    flex-wrap: wrap; 
+    width:100%; 
     justify-content: center;
+    flex-wrap: wrap;
+    
+}
+.ShowInfoTable{
+    min-height: 300px;
 }
 #PersonCard{
      
-    width:80%;       
+    width:100%;       
     margin: 0 auto;
     margin-top:30px;     
     display: flex;
@@ -256,6 +268,19 @@ h3{
 }
 .PersonItem::after{
     content: ',';
+}
+#ErrorInfo{
+    color:red;
+}
+
+.CardsNumberWrapper{
+    width:100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.CardsNumberWrapper>p{
+    padding:2px;
 }
 /* ==========================================================================
    Media Queries

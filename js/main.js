@@ -35,6 +35,7 @@ const SpeciesInfoButton = document.createElement("div");
 const VehiclesInfoButton = document.createElement("div");
 const StarshipsInfoButton = document.createElement("div");
 
+
 InfoTable.appendChild(PersonCardInfo);
 
 //////////////////////////////////////////////////////
@@ -51,6 +52,8 @@ MainTitle.addEventListener("click", e => {
 });
 
 PersonalInfoButton.addEventListener("click", e => {
+    InfoTable.classList.add("ShowInfoTable");
+    
     TableGenerator(ChoosenPersonData, [
         "name",
         "height",
@@ -63,6 +66,7 @@ PersonalInfoButton.addEventListener("click", e => {
     ]);
 });
 SpeciesInfoButton.addEventListener("click", e => {
+    InfoTable.classList.add("ShowInfoTable");
     TableGenerator(
         ChoosenPersonData.species,
         [
@@ -79,6 +83,8 @@ SpeciesInfoButton.addEventListener("click", e => {
     );
 });
 VehiclesInfoButton.addEventListener("click", e => {    
+    InfoTable.classList.add("ShowInfoTable");   
+     
     TableGenerator(
         ChoosenPersonData.vehicles,
         [
@@ -96,9 +102,13 @@ VehiclesInfoButton.addEventListener("click", e => {
         ],
         0
     );
+   
+
+
+
 });
 
-StarshipsInfoButton.addEventListener("click", e => {    
+function showStarships(e){
     TableGenerator(
         ChoosenPersonData.starships,
         [
@@ -115,8 +125,18 @@ StarshipsInfoButton.addEventListener("click", e => {
             "manufacturer",
             "max_atmosphering_speed"           
         ],
-        0
+        e-1
     );
+
+  
+}
+
+
+StarshipsInfoButton.addEventListener("click", e => {    
+    InfoTable.classList.add("ShowInfoTable");
+   
+    showStarships(1)
+   
 });
 
 let lodash = 0;
@@ -150,7 +170,7 @@ AllPersonsButton.addEventListener("click", e => {
 AllPersonWrapper.addEventListener("click", e => {
     persons = JSON.parse(window.localStorage.getItem('persons'))
     getAllDataAboutPerson(persons, e.target.innerHTML)
-   
+    InfoTable.classList.add("ShowInfoTable");
     TableGenerator(ChoosenPersonData, [
         "name",
         "height",
@@ -283,7 +303,7 @@ SearchResults.addEventListener("click", e => {
 
 
     getAllDataAboutPerson(SearchListResults, e.target.innerHTML)
-
+    InfoTable.classList.add("ShowInfoTable");
     TableGenerator(ChoosenPersonData, [
         "name",
         "height",
@@ -325,9 +345,10 @@ const TableGenerator = (person, parmArr, ObjNumber) => {
     let NewTableParametersValue = document.createElement("ul");
     InfoTable.innerHTML = "";
     ///////////////////Array object
-    if (Array.isArray(person)) {
+    if (Array.isArray(person)) {        
         person.forEach(function (obj, num) {
             if (num == ObjNumber) {
+                
                 let arreyOfParam = Object.keys(obj);
                 parmArr.forEach(function (param) {
                     arreyOfParam.forEach(function (item, number) {
@@ -356,10 +377,14 @@ const TableGenerator = (person, parmArr, ObjNumber) => {
                             NewTableParametersValue.appendChild(
                                 ParamValueElementList
                             );
+
+                            
                         }
                     });
                 });
             }
+        
+        
         });
     } else {
         /////////////////////// Single Object
@@ -385,6 +410,7 @@ const TableGenerator = (person, parmArr, ObjNumber) => {
             });
         });
     }
+    
     NewTableParameters.setAttribute("id", `PersonHeaderList`);
     InfoTable.appendChild(NewTableParameters);
     NewTableParametersValue.setAttribute("id", `PersonItemList`);
@@ -500,9 +526,9 @@ function getAllDataAboutPerson(dataList, personName) {
 }
 
 
-let num = 0
-axios.interceptors.response.use(response => {
-    num++;
-    console.log(num, response)
-    return response
-})
+// let num = 0
+// axios.interceptors.response.use(response => {
+//     num++;
+//     console.log(num, response)
+//     return response
+// })
