@@ -125,8 +125,10 @@ AllPersonsButton.addEventListener("click", e => {
 //////////Chect person from list of all characters
 AllPersonWrapper.addEventListener("click", e => {
    
-   console.log(persons)
+
     getAllDataAboutPerson(persons, e.target.innerHTML)
+
+
 
     TableGenerator(ChoosenPersonData, [
         "name",
@@ -163,6 +165,12 @@ AllPersonWrapper.addEventListener("click", e => {
 ////////////////Get all persons from API ///////////////////////
 
 async function getAllPersons() {
+
+    if(window.localStorage.getItem('persons')){
+        persons = JSON.parse(window.localStorage.getItem('persons'))
+    
+    }
+    else{
     await axios
         .all([
             axios.get(`${ApiSrc}people/?page=1`),
@@ -188,8 +196,9 @@ async function getAllPersons() {
                 responseArr[8].data.results
             );
 
-            console.log(persons)
-        });
+            window.localStorage.setItem('persons', JSON.stringify(persons));
+      
+        });  }
 }
 
 ////////////////END Get all persons from API and Create ID's for all persons ///////////////////////
@@ -251,7 +260,6 @@ SearchResults.addEventListener("click", e => {
  
   getAllDataAboutPerson(SearchListResults, e.target.innerHTML)
 
-
                 TableGenerator(ChoosenPersonData, [
                     "name",
                     "height",
@@ -281,6 +289,9 @@ SearchResults.addEventListener("click", e => {
 });
 
 ////////////////////////// END Show SearchResults //////////////////////////////
+
+
+
 
 
 /////////////////////Table Generator ///////////
@@ -400,16 +411,9 @@ const GetFromApi = (x, y, z) => {
 
 
 function getAllDataAboutPerson(dataList, personName){
-
-   
-if(!personsWithData.includes(personName)){
-
-personsWithData.push(personName);
-dataList.forEach(function(person){         
-    if(person.name == personName){        //////////find person        
-    
+dataList.forEach(function(person){       
+     if(person.name == personName){        //////////find person        
         ChoosenPersonData = person;
-     
         GetFromApi(
             ChoosenPersonData.homeworld,
             ChoosenPersonData,
@@ -433,8 +437,12 @@ dataList.forEach(function(person){
             ChoosenPersonData,
             "species"
         )
+
+     
+
+
     }
-})}
+})
 
 
 }

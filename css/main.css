@@ -73,15 +73,14 @@ h3{
   }
    #TerminalWrapper{      
        margin:0 auto;            
-       text-align: center;
-       padding:80px 50px;
+       text-align: center;       
        display: flex;
        justify-content: center;   
    }
 
   
    #MainWrapper{
-    width:80%;
+    width:95%;
     border:solid red 4px;
     margin: 0 auto;
     padding:20px;
@@ -93,8 +92,7 @@ h3{
    }
 
    #MileniumImg{
-    width:400px;
-     
+    width:230px;     
     pointer-events: none;
 }
    .MainTitle{
@@ -105,7 +103,19 @@ h3{
        margin-block-start: 0em;
        margin-block-end: 0em;
        margin-top:20px;
+       cursor:pointer;
    }
+   .MainTitle:hover{
+    color: gold;
+   }
+   #AllPersonsButton{
+    cursor:pointer;
+    color:slategrey;
+   }
+   #AllPersonsButton:hover{
+    color:white;
+   }
+
    #SearchResults{
        width:80%;
        background: white;
@@ -204,18 +214,29 @@ h3{
 
 
 .PersonCardMenu{
- width:33%;
+ width:30%;
  text-align: center;
  margin-bottom: 30px;
+ cursor: pointer;
+ color:red;
+ padding: 2px;
+}
+.PersonCardMenu:hover{
+    color:rosybrown;
 }
 
 #AllPersonWrapper{
     display: flex;
     flex-wrap: wrap;
     margin-top:5px;
+    justify-content: center;
 }
 .PersonItem{    
     padding:5px;
+    cursor: pointer;
+}
+.PersonItem:hover{
+    color:white;
 }
 .PersonItem::after{
     content: ',';
@@ -223,6 +244,26 @@ h3{
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+
+   @media only screen and (min-width: 500px){
+    #MileniumImg{
+        width:400px;     
+        pointer-events: none;
+    }
+}
+
+   @media only screen and (min-width: 610px){
+    #MainWrapper{
+        width: 500px;
+        border:solid red 4px;
+        margin: 0 auto;
+        padding:60px;
+        padding-top:20px;
+        border-radius: 30px;
+        background-color: rgb(7, 14, 21);
+        box-shadow: 0 0 15px #d35400;
+       }
+}
 
 
 @media only screen and (min-width: 1300px) {
@@ -243,23 +284,12 @@ h3{
 
 @media only screen and (min-width: 1500px) {
  body{
-     background-size: cover;
+    background-position: 37% top;
      
  }
 }
 
-@media only screen and (min-width: 610px){
-    #MainWrapper{
-        width: 500px;
-        border:solid red 4px;
-        margin: 0 auto;
-        padding:60px;
-        padding-top:20px;
-        border-radius: 30px;
-        background-color: rgb(7, 14, 21);
-        box-shadow: 0 0 15px #d35400;
-       }
-}
+
 
 
 
