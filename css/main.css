@@ -105,9 +105,15 @@ h3{
        margin-top:20px;
        cursor:pointer;
    }
+   
    .MainTitle:hover{
     color: gold;
    }
+   #MainSlogan{
+     pointer-events: none;
+
+   }
+
    #AllPersonsButton{
     cursor:pointer;
     color:slategrey;
@@ -137,7 +143,7 @@ h3{
     cursor: pointer;
 }
 .ElementList:hover{
-    color:white;
+    color:black;
 }
    #FindPerson{
        width:80%;
@@ -146,6 +152,15 @@ h3{
    }
    #SearchWrapper{
        position:relative;
+   }
+   #SearchInputWrapper{
+       position: relative;
+   }
+   #SearchData{
+       position: absolute;
+       top: 17px;
+       right: 57px;
+       pointer-events: none;
    }
 
 /* width */
@@ -212,15 +227,16 @@ h3{
     flex-wrap: wrap; 
 }
 
-
 .PersonCardMenu{
- width:30%;
+ width:23%;
  text-align: center;
+ font-size: 15px;
  margin-bottom: 30px;
  cursor: pointer;
  color:red;
- padding: 2px;
+ padding: 1px;
 }
+
 .PersonCardMenu:hover{
     color:rosybrown;
 }
