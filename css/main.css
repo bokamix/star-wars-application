@@ -123,7 +123,7 @@ h3{
    }
 
    #SearchResults{
-       width:80%;
+       width:76%;
        background: white;
        margin:0 auto;
        overflow-y:scroll;
@@ -162,23 +162,28 @@ h3{
        right: 57px;
        pointer-events: none;
    }
+#FindPerson{
+    border-radius: 20px;
+    box-shadow: 0 0 5px #d35400;
+    outline: none;
+    padding-left: 10px;
+}
 
-/* width */
+
 ::-webkit-scrollbar {
     width: 10px;
   }
-  
-  /* Track */
+
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
   
-  /* Handle */
+
   ::-webkit-scrollbar-thumb {
     background: #888;
   }
   
-  /* Handle on hover */
+ 
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
@@ -243,7 +248,7 @@ h3{
  width:23%;
  text-align: center;
  font-size: 15px;
- margin-bottom: 30px;
+ margin-bottom: 10px;
  cursor: pointer;
  color:red;
  padding: 1px;
@@ -280,8 +285,18 @@ h3{
     justify-content: center;
 }
 .CardsNumberWrapper>p{
-    padding:2px;
+    padding:10px;
+    margin-bottom:10px;
+    font-weight: 800;
+    font-size: 20px;
+    cursor: pointer;
 }
+
+#LoadingInfo{
+    margin-top:10px;
+}
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -347,4 +362,7 @@ h3{
 
    .DisplayNone{
        display:none!important;
+   }
+   .DisplayEvent{
+    pointer-events: none;   
    }
