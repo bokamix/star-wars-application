@@ -22,43 +22,35 @@
 </head>
 
 <body>
-
     <main id="AppWrapper" class="AppWrapper">
-        
         <div id="TerminalWrapper" class="TerminalWrapper">
             <div id="MainWrapper">
-                <img id="MileniumImg" src="img/milenium.png" alt="milenium" >
-            <div id="AllPersonsButton">All Characters</div>
-            <h2 id="MainTitle" class="MainTitle">Bountyfy!</h2>
-            <p id="MainSlogan">Find information about your victim!</p>
-            <div id="ContentContainer">
-                <div id="CharacterFinder">
-                    <div id="SearchWrapper">
-                        <h3 >Find Person</h3>
-                       
-                        <div id="SearchInputWrapper">
-                            <p id="SearchData" class="DisplayNone">...search</p>
-                            <input id="FindPerson" onchange="letsSearch()" type="text" name="fname" type="text"
-                            autocomplete="off">
+                <img id="MileniumImg" src="img/milenium.png" alt="milenium">
+                <div id="AllPersonsButton">All Characters</div>
+                <h2 id="MainTitle" class="MainTitle">Bountyfy!</h2>
+                <p id="MainSlogan">Find information about your victim!</p>
+                <div id="ContentContainer">
+                    <div id="CharacterFinder">
+                        <div id="SearchWrapper">
+                            <h3>Find Person</h3>
+                            <div id="SearchInputWrapper">
+                                <p id="SearchData" class="DisplayNone">...search</p>
+                                <input id="FindPerson" onchange="letsSearch()" type="text" name="fname" type="text"
+                                    autocomplete="off">
+                            </div>
+                            <div id="SearchResults"></div>
                         </div>
-                        <div id="SearchResults"></div>
-                    </div>
-                    <div id="PersonCard">
-
+                        <div id="PersonCard">
+                        </div>
                     </div>
                 </div>
+                <p id="LoadingInfo" class="DisplayNone">...loading data</p>
+                <p id="ErrorInfo" class="DisplayNone">There is a problem with the network, you need to deal with the
+                    data you already have, or wait for the server to respond. You don't have to refresh.</p>
             </div>
-            <p id="LoadingInfo" class="DisplayNone">...loading data</p>
-            <p id="ErrorInfo" class="DisplayNone">There is a problem with the network, you need to deal with the data you already have, or wait for the server to respond. You don't have to refresh.</p>
-         
         </div>
-     
-        </div>
-     
     </main>
     <script src="js/main.js"></script>
-
-
 </body>
 
 </html>

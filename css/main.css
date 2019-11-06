@@ -1,368 +1,485 @@
- 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-    line-height: 1;   
-    background-image: url(../img/galaxy.jpg);
-    background-repeat: repeat;   
-    color:white;
- 
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One&display=swap');
-*{
-    box-sizing: border-box;
-    font-family: 'Pathway Gothic One', sans-serif!important;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-}
-p{
-    font-size: 15px;
-    font-weight: 500;
-    color:#949494
-}
-h3{
-    font-size: 20px;
-    font-weight: 700;
-    color:#949494;
-    margin:4px;
-    margin-top:30px;
-}
-/* ==========================================================================
+ html,
+ body,
+ div,
+ span,
+ applet,
+ object,
+ iframe,
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ p,
+ blockquote,
+ pre,
+ a,
+ abbr,
+ acronym,
+ address,
+ big,
+ cite,
+ code,
+ del,
+ dfn,
+ em,
+ img,
+ ins,
+ kbd,
+ q,
+ s,
+ samp,
+ small,
+ strike,
+ strong,
+ sub,
+ sup,
+ tt,
+ var,
+ b,
+ u,
+ i,
+ center,
+ dl,
+ dt,
+ dd,
+ ol,
+ ul,
+ li,
+ fieldset,
+ form,
+ label,
+ legend,
+ table,
+ caption,
+ tbody,
+ tfoot,
+ thead,
+ tr,
+ th,
+ td,
+ article,
+ aside,
+ canvas,
+ details,
+ embed,
+ figure,
+ figcaption,
+ footer,
+ header,
+ hgroup,
+ menu,
+ nav,
+ output,
+ ruby,
+ section,
+ summary,
+ time,
+ mark,
+ audio,
+ video {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     font-size: 100%;
+     font: inherit;
+     vertical-align: baseline;
+ }
+
+ /* HTML5 display-role reset for older browsers */
+ article,
+ aside,
+ details,
+ figcaption,
+ figure,
+ footer,
+ header,
+ hgroup,
+ menu,
+ nav,
+ section {
+     display: block;
+ }
+
+ body {
+     line-height: 1;
+     background-image: url(../img/galaxy.jpg);
+     background-repeat: repeat;
+     color: white;
+
+ }
+
+ ol,
+ ul {
+     list-style: none;
+ }
+
+ blockquote,
+ q {
+     quotes: none;
+ }
+
+ blockquote:before,
+ blockquote:after,
+ q:before,
+ q:after {
+     content: '';
+     content: none;
+ }
+
+ table {
+     border-collapse: collapse;
+     border-spacing: 0;
+ }
+
+ @import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One&display=swap');
+
+ * {
+     box-sizing: border-box;
+     font-family: 'Pathway Gothic One', sans-serif !important;
+     margin-block-start: 0em;
+     margin-block-end: 0em;
+ }
+
+ p {
+     font-size: 15px;
+     font-weight: 500;
+     color: #949494
+ }
+
+ h3 {
+     font-size: 20px;
+     font-weight: 700;
+     color: #949494;
+     margin: 4px;
+     margin-top: 30px;
+ }
+
+ /* ==========================================================================
     Styles
    ========================================================================== */
-  #AppWrapper{
-    margin-top:50px;
-  }
-   #TerminalWrapper{      
-       margin:0 auto;            
-       text-align: center;       
-       display: flex;
-       justify-content: center;   
-   }
+ #AppWrapper {
+     margin-top: 50px;
+ }
 
-  
-   #MainWrapper{
-    width:95%;
-    border:solid red 4px;
-    margin: 0 auto;
-    padding:20px;
-    padding-top:20px;
-    border-radius: 30px;
-    background-color: rgb(7, 14, 21);
-    box-shadow: 0 0 15px #d35400;
-    position: relative;
-   }
+ #TerminalWrapper {
+     margin: 0 auto;
+     text-align: center;
+     display: flex;
+     justify-content: center;
+ }
 
-   #MileniumImg{
-    width:230px;     
-    pointer-events: none;
-}
-   .MainTitle{
-       color:goldenrod;
-       text-transform: uppercase;
-       font-weight: bold;
-       font-size: 40px;
-       margin-block-start: 0em;
-       margin-block-end: 0em;
-       margin-top:20px;
-       cursor:pointer;
-   }
-   
-   .MainTitle:hover{
-    color: gold;
-   }
-   #MainSlogan{
+
+ #MainWrapper {
+     width: 95%;
+     border: solid red 4px;
+     margin: 0 auto;
+     padding: 20px;
+     padding-top: 20px;
+     border-radius: 30px;
+     background-color: rgb(7, 14, 21);
+     box-shadow: 0 0 15px #d35400;
+     position: relative;
+ }
+
+ #MileniumImg {
+     width: 230px;
+     pointer-events: none;
+ }
+
+ .MainTitle {
+     color: goldenrod;
+     text-transform: uppercase;
+     font-weight: bold;
+     font-size: 40px;
+     margin-block-start: 0em;
+     margin-block-end: 0em;
+     margin-top: 20px;
+     cursor: pointer;
+ }
+
+ .MainTitle:hover {
+     color: gold;
+ }
+
+ #MainSlogan {
      pointer-events: none;
 
-   }
+ }
 
-   #AllPersonsButton{
-    cursor:pointer;
-    color:slategrey;
-   }
-   #AllPersonsButton:hover{
-    color:white;
-   }
+ #AllPersonsButton {
+     cursor: pointer;
+     color: slategrey;
+ }
 
-   #SearchResults{
-       width:76%;
-       background: white;
-       margin:0 auto;
-       overflow-y:scroll;
-       max-height: 112px;
-       position:absolute;
-       left: 50%;
-       transform: translate(-50%, 0);
-      
-   }
+ #AllPersonsButton:hover {
+     color: white;
+ }
 
-#SearchResults::-webkit-scrollbar {
-    width: 2px;
-  }
-   #SearchResults>p{
-    padding:10px;
-    border-bottom:1px #ebe4e4 solid;
-    cursor: pointer;
-}
-.ElementList:hover{
-    color:black;
-}
-   #FindPerson{
-       width:80%;
-       margin-top:15px;   
-       
-   }
-   #SearchWrapper{
-       position:relative;
-   }
-   #SearchInputWrapper{
-       position: relative;
-   }
-   #SearchData{
-       position: absolute;
-       top: 17px;
-       right: 57px;
-       pointer-events: none;
-   }
-#FindPerson{
-    border-radius: 20px;
-    box-shadow: 0 0 5px #d35400;
-    outline: none;
-    padding-left: 10px;
-}
+ #SearchResults {
+     width: 76%;
+     background: white;
+     margin: 0 auto;
+     overflow-y: scroll;
+     max-height: 112px;
+     position: absolute;
+     left: 50%;
+     transform: translate(-50%, 0);
 
+ }
 
-::-webkit-scrollbar {
-    width: 10px;
-  }
+ #SearchResults::-webkit-scrollbar {
+     width: 2px;
+ }
 
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
+ #SearchResults>p {
+     padding: 10px;
+     border-bottom: 1px #ebe4e4 solid;
+     cursor: pointer;
+ }
 
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  
- 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+ .ElementList:hover {
+     color: black;
+ }
+
+ #FindPerson {
+     width: 80%;
+     margin-top: 15px;
+
+ }
+
+ #SearchWrapper {
+     position: relative;
+ }
+
+ #SearchInputWrapper {
+     position: relative;
+ }
+
+ #SearchData {
+     position: absolute;
+     top: 17px;
+     right: 57px;
+     pointer-events: none;
+ }
+
+ #FindPerson {
+     border-radius: 20px;
+     box-shadow: 0 0 5px #d35400;
+     outline: none;
+     padding-left: 10px;
+ }
 
 
-/* ==========================================================================
+ ::-webkit-scrollbar {
+     width: 10px;
+ }
+
+ ::-webkit-scrollbar-track {
+     background: #f1f1f1;
+ }
+
+
+ ::-webkit-scrollbar-thumb {
+     background: #888;
+ }
+
+
+ ::-webkit-scrollbar-thumb:hover {
+     background: #555;
+ }
+
+
+ /* ==========================================================================
    Table
    ========================================================================== */
 
-   #PersonCard{
-    display: flex;
-    text-align: left;
-    width:95%;
-    margin:0 auto;
-    word-wrap: break-word;
-}
-.ListItem{
-   
-    color: white;
-    font-weight: 500;
-    padding: 2px 0;
-    height: 40px;  
-    font-size: 13px;
-}
-.ListHeader{
-   
-    color: white;
-    font-weight: 500;
-    padding: 2px 0;
-    height: 40px;  
-    font-size: 13px;
-}
-#PersonHeaderList{
-    width: 46%;
-    
-}
-#PersonItemList{
-    width: 46%;
-}
+ #PersonCard {
+     display: flex;
+     text-align: left;
+     width: 95%;
+     margin: 0 auto;
+     word-wrap: break-word;
+ }
+
+ .ListItem {
+
+     color: white;
+     font-weight: 500;
+     padding: 2px 0;
+     height: 40px;
+     font-size: 13px;
+ }
+
+ .ListHeader {
+
+     color: white;
+     font-weight: 500;
+     padding: 2px 0;
+     height: 40px;
+     font-size: 13px;
+ }
+
+ #PersonHeaderList {
+     width: 46%;
+
+ }
+
+ #PersonItemList {
+     width: 46%;
+ }
 
 
-#InfoTable{
-    display: flex;
-    width:100%; 
-    justify-content: center;
-    flex-wrap: wrap;
-    
-}
-.ShowInfoTable{
-    min-height: 300px;
-}
-#PersonCard{
-     
-    width:100%;       
-    margin: 0 auto;
-    margin-top:30px;     
-    display: flex;
-    flex-wrap: wrap; 
-}
+ #InfoTable {
+     display: flex;
+     width: 100%;
+     justify-content: center;
+     flex-wrap: wrap;
 
-.PersonCardMenu{
- width:23%;
- text-align: center;
- font-size: 15px;
- margin-bottom: 10px;
- cursor: pointer;
- color:red;
- padding: 1px;
-}
+ }
 
-.PersonCardMenu:hover{
-    color:rosybrown;
-}
+ .ShowInfoTable {
+     min-height: 300px;
+ }
 
-#AllPersonWrapper{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top:5px;
-    justify-content: center;
-}
-.PersonItem{    
-    padding:5px;
-    cursor: pointer;
-}
-.PersonItem:hover{
-    color:white;
-}
-.PersonItem::after{
-    content: ',';
-}
-#ErrorInfo{
-    color:red;
-}
+ #PersonCard {
 
-.CardsNumberWrapper{
-    width:100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-.CardsNumberWrapper>p{
-    padding:10px;
-    margin-bottom:10px;
-    font-weight: 800;
-    font-size: 20px;
-    cursor: pointer;
-}
+     width: 100%;
+     margin: 0 auto;
+     margin-top: 30px;
+     display: flex;
+     flex-wrap: wrap;
+ }
 
-#LoadingInfo{
-    margin-top:10px;
-}
+ .PersonCardMenu {
+     width: 23%;
+     text-align: center;
+     font-size: 15px;
+     margin-bottom: 10px;
+     cursor: pointer;
+     color: red;
+     padding: 1px;
+ }
+
+ .PersonCardMenu:hover {
+     color: rosybrown;
+ }
+
+ #AllPersonWrapper {
+     display: flex;
+     flex-wrap: wrap;
+     margin-top: 5px;
+     justify-content: center;
+ }
+
+ .PersonItem {
+     padding: 5px;
+     cursor: pointer;
+ }
+
+ .PersonItem:hover {
+     color: white;
+ }
+
+ .PersonItem::after {
+     content: ',';
+ }
+
+ #ErrorInfo {
+     color: red;
+ }
+
+ .CardsNumberWrapper {
+     width: 100%;
+     text-align: center;
+     display: flex;
+     justify-content: center;
+ }
+
+ .CardsNumberWrapper>p {
+     padding: 10px;
+     margin-bottom: 10px;
+     font-weight: 800;
+     font-size: 20px;
+     cursor: pointer;
+ }
+
+ #LoadingInfo {
+     margin-top: 10px;
+ }
 
 
-/* ==========================================================================
+ /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-   @media only screen and (min-width: 500px){
-    #MileniumImg{
-        width:400px;     
-        pointer-events: none;
-    }
-}
-
-   @media only screen and (min-width: 610px){
-    #MainWrapper{
-        width: 500px;
-        border:solid red 4px;
-        margin: 0 auto;
-        padding:60px;
-        padding-top:20px;
-        border-radius: 30px;
-        background-color: rgb(7, 14, 21);
-        box-shadow: 0 0 15px #d35400;
-       }
-}
-
-
-@media only screen and (min-width: 1300px) {
-  body{
-    background:black;
-    background-image: url(../img/destroyer.jpg);  
-    background-repeat: no-repeat;
-  }
-    #MileniumImg{
-      width:100%;
-      position: absolute;
-      top:0;
-      left:-400px;
-      pointer-events: none;
-  }
-   
-}
-
-@media only screen and (min-width: 1500px) {
- body{
-    background-position: 37% top;
-     
+ @media only screen and (min-width: 500px) {
+     #MileniumImg {
+         width: 400px;
+         pointer-events: none;
+     }
  }
-}
+
+ @media only screen and (min-width: 610px) {
+     #MainWrapper {
+         width: 500px;
+         border: solid red 4px;
+         margin: 0 auto;
+         padding: 60px;
+         padding-top: 20px;
+         border-radius: 30px;
+         background-color: rgb(7, 14, 21);
+         box-shadow: 0 0 15px #d35400;
+     }
+ }
 
 
+ @media only screen and (min-width: 1300px) {
+     body {
+         background: black;
+         background-image: url(../img/destroyer.jpg);
+         background-repeat: no-repeat;
+     }
 
+     #MileniumImg {
+         width: 100%;
+         position: absolute;
+         top: 0;
+         left: -400px;
+         pointer-events: none;
+     }
 
+ }
 
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
+ @media only screen and (min-width: 1500px) {
+     body {
+         background-position: 37% top;
 
-}
+     }
+ }
 
-/* ==========================================================================
+ @media print,
+ (-o-min-device-pixel-ratio: 5/4),
+ (-webkit-min-device-pixel-ratio: 1.25),
+ (min-resolution: 120dpi) {}
+
+ /* ==========================================================================
    Helper classes
    ========================================================================== */
 
-   .DisplayNone{
-       display:none!important;
-   }
-   .DisplayEvent{
-    pointer-events: none;   
-   }
+ .DisplayNone {
+     display: none !important;
+ }
+
+ .DisplayEvent {
+     pointer-events: none;
+ }
+
+ .ActiveElement {
+     color: goldenrod;
+ }
+
+ .ActiveNumber {
+     color: goldenrod !important;
+ }

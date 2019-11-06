@@ -1,165 +1,131 @@
-const InfoTable = document.createElement("div");
-let personCard = document.querySelector('#PersonCard')
-InfoTable.setAttribute("id", `InfoTable`);
+const infoTable = document.createElement("div");
+let personCard = document.querySelector("#PersonCard");
+infoTable.setAttribute("id", `InfoTable`);
 
 window.addEventListener("load", () => {
-    creatAppView(); 
+    creatAppView();
 });
 
 const creatAppView = () => {
-    personCard.appendChild(InfoTable);
+    personCard.appendChild(infoTable);
 };
-
 
 /////////////////////////////////////////////////////////
 ////////// Varible and elements
 /////////////////////////////////////////////////////////
-let ApiSrc = "https://swapi.co/api/";
-const MainTitle = document.querySelector("#MainTitle");
-const MainSlogan = document.querySelector("#MainSlogan");
-const SearchForm = document.querySelector("#FindPerson");
-const SearchResults = document.querySelector("#SearchResults");
-const PersonItemList = document.querySelector("#PersonItemList");
-const loadingInfo = document.querySelector('#LoadingInfo')
-const errorInfo = document.querySelector("#ErrorInfo")
-const searchData = document.querySelector('#SearchData');
-const AllPersonsButton = document.querySelector("#AllPersonsButton");
-let AllPersonWrapper = document.createElement("div");
-let PersonCardInfo = document.createElement("div");
-const PersonalInfoButton = document.createElement("div");
-const SpeciesInfoButton = document.createElement("div");
-const VehiclesInfoButton = document.createElement("div");
-const StarshipsInfoButton = document.createElement("div");
+let apiSrc = "https://swapi.co/api/";
+const mainTitle = document.querySelector("#MainTitle");
+const searchForm = document.querySelector("#FindPerson");
+const searchResults = document.querySelector("#SearchResults");
+const personItemList = document.querySelector("#PersonItemList");
+const loadingInfo = document.querySelector("#LoadingInfo");
+const errorInfo = document.querySelector("#ErrorInfo");
+const searchData = document.querySelector("#SearchData");
+const allPersonsButton = document.querySelector("#AllPersonsButton");
+let allPersonWrapper = document.createElement("div");
+let personCardInfo = document.createElement("div");
+const personalInfoButton = document.createElement("div");
+const speciesInfoButton = document.createElement("div");
+const vehiclesInfoButton = document.createElement("div");
+const starshipsInfoButton = document.createElement("div");
+const characterFinder = document.querySelector("#CharacterFinder");
 let persons = [];
 let personsWithData = [];
-let SearchListResults = [];
-let ChoosenPersonData = [];
+let searchListResults = [];
+let choosenPersonData = [];
 const CancelToken = axios.CancelToken;
 let cancel;
 let lodash = 0;
-AllPersonWrapper.setAttribute("class", `DisplayNone`);
-AllPersonWrapper.setAttribute("id", `AllPersonWrapper`);
-InfoTable.appendChild(PersonCardInfo);
+allPersonWrapper.setAttribute("class", `DisplayNone`);
+allPersonWrapper.setAttribute("id", `AllPersonWrapper`);
+infoTable.appendChild(personCardInfo);
 
 /////////////////////////////////////////////////////////
 //////////////END Varible and elements
 /////////////////////////////////////////////////////////
 
-
 //////////////////////////////////////////////////////
 ///////////////User Actions
 //////////////////////////////////////////////////////
 
-MainTitle.addEventListener("click", e => {
+mainTitle.addEventListener("click", e => {
     location.reload();
 });
 
-PersonalInfoButton.addEventListener("click", e => {
-    InfoTable.classList.add("ShowInfoTable");
-    showPersonTable()
+personalInfoButton.addEventListener("click", e => {
+    infoTable.classList.add("ShowInfoTable");
+    ToggleCard(e.target);
+    showPersonTable();
 });
-SpeciesInfoButton.addEventListener("click", e => {
-    InfoTable.classList.add("ShowInfoTable");
-    showSpeciesTable()   
+speciesInfoButton.addEventListener("click", e => {
+    infoTable.classList.add("ShowInfoTable");
+    ToggleCard(e.target);
+    showSpeciesTable();
 });
-VehiclesInfoButton.addEventListener("click", e => {
-    InfoTable.classList.add("ShowInfoTable");
-    showVehicles(1)
+vehiclesInfoButton.addEventListener("click", e => {
+    infoTable.classList.add("ShowInfoTable");
+    ToggleCard(e.target);
+    showVehicles(1);
 });
-StarshipsInfoButton.addEventListener("click", e => {
-    InfoTable.classList.add("ShowInfoTable");
-    showStarships(1)
+starshipsInfoButton.addEventListener("click", e => {
+    infoTable.classList.add("ShowInfoTable");
+    ToggleCard(e.target);
+    showStarships(1);
 });
-AllPersonsButton.addEventListener("click", e => {
+allPersonsButton.addEventListener("click", e => {
     if (persons.length == 0 && lodash == 0) {
         lodash = lodash + 1;
-        AllPersonWrapper.classList.toggle("DisplayNone");
-        CharacterFinder.classList.toggle("DisplayNone");
+        allPersonWrapper.classList.toggle("DisplayNone");
+        characterFinder.classList.toggle("DisplayNone");
         getAllPersons().then(respone => {
-            persons.forEach(function (person) {
+            persons.forEach(function(person) {
                 let personP = document.createElement("p");
                 personP.setAttribute("class", `PersonItem`);
                 personP.innerHTML = `${person.name}`;
-                AllPersonWrapper.appendChild(personP);
+                allPersonWrapper.appendChild(personP);
             });
 
-            ContentContainer.appendChild(AllPersonWrapper);
+            ContentContainer.appendChild(allPersonWrapper);
         });
-
     } else {
-        if (!CharacterFinder.classList.contains("DisplayNone")) {
-            CharacterFinder.classList.add("DisplayNone");
+        if (!characterFinder.classList.contains("DisplayNone")) {
+            characterFinder.classList.add("DisplayNone");
         }
-        AllPersonWrapper.classList.remove("DisplayNone");
+        allPersonWrapper.classList.remove("DisplayNone");
     }
 });
 
 //////////Choose person from list of all characters
-AllPersonWrapper.addEventListener("click", e => {
-    persons = JSON.parse(window.localStorage.getItem('persons'))
-    getAllDataAboutPerson(persons, e.target.innerHTML)    
-    InfoTable.classList.add("ShowInfoTable");
-    showPersonTable()
+allPersonWrapper.addEventListener("click", e => {
+    persons = JSON.parse(window.localStorage.getItem("persons"));
+    getAllDataAboutPerson(persons, e.target.innerHTML);
+    infoTable.classList.add("ShowInfoTable");
 
-    StarshipsInfoButton.innerHTML = "Starships Info";
-    StarshipsInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(StarshipsInfoButton);
+    showPersonTable();
+    generatePersonCardMenu();
 
-    VehiclesInfoButton.innerHTML = "Vehicles Info";
-    VehiclesInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(VehiclesInfoButton);
-
-    SpeciesInfoButton.innerHTML = "Species Info";
-    SpeciesInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(SpeciesInfoButton);
-
-    PersonalInfoButton.innerHTML = "Personal Info";
-    PersonalInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(PersonalInfoButton);
-
-    AllPersonWrapper.classList.toggle("DisplayNone");
-    CharacterFinder.classList.toggle("DisplayNone");
+    allPersonWrapper.classList.toggle("DisplayNone");
+    characterFinder.classList.toggle("DisplayNone");
 });
 
 //////////END Choose person from list of all characters
 
 ////////////////////////// Select person from SearchResults //////////////////////////////
-SearchResults.addEventListener("click", e => {
+searchResults.addEventListener("click", e => {
+    getAllDataAboutPerson(searchListResults, e.target.innerHTML);
+    infoTable.classList.add("ShowInfoTable");
+    ToggleCard(e.target);
+    showPersonTable();
+    generatePersonCardMenu();
 
-
-    getAllDataAboutPerson(SearchListResults, e.target.innerHTML)
-    InfoTable.classList.add("ShowInfoTable");
-    showPersonTable()
-
-
-    StarshipsInfoButton.innerHTML = "Starships Info";
-    StarshipsInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(StarshipsInfoButton);
-
-    VehiclesInfoButton.innerHTML = "Vehicles Info";
-    VehiclesInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(VehiclesInfoButton);
-
-    SpeciesInfoButton.innerHTML = "Species Info";
-    SpeciesInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(SpeciesInfoButton);
-
-    PersonalInfoButton.innerHTML = "Personal Info";
-    PersonalInfoButton.setAttribute("class", `PersonCardMenu`);
-    personCard.prepend(PersonalInfoButton);
-
-    SearchResults.innerHTML = "";
-    SearchForm.value = "";
-
-
+    searchResults.innerHTML = "";
+    searchForm.value = "";
 });
 ////////////////////////// END elect person from SearchResults //////////////////////////////
-
 
 ///////////////////////////////////////////////////////////////
 ///////////////////       End User Actions
 ///////////////////////////////////////////////////////////////
-
 
 ///////////////////////////////////////////////////////////////
 ///////////////////       API Interaction
@@ -168,27 +134,24 @@ SearchResults.addEventListener("click", e => {
 ////////////////Get all persons from API or Localstorage ///////////////////////
 
 async function getAllPersons() {
-
-    if (window.localStorage.getItem('persons')) {
-        persons = JSON.parse(window.localStorage.getItem('persons'))
-
-    }
-    else {
-        loadingInfo.classList.remove('DisplayNone')
+    if (window.localStorage.getItem("persons")) {
+        persons = JSON.parse(window.localStorage.getItem("persons"));
+    } else {
+        loadingInfo.classList.remove("DisplayNone");
         await axios
             .all([
-                axios.get(`${ApiSrc}people/?page=1`),
-                axios.get(`${ApiSrc}people/?page=2`),
-                axios.get(`${ApiSrc}people/?page=3`),
-                axios.get(`${ApiSrc}people/?page=4`),
-                axios.get(`${ApiSrc}people/?page=5`),
-                axios.get(`${ApiSrc}people/?page=6`),
-                axios.get(`${ApiSrc}people/?page=7`),
-                axios.get(`${ApiSrc}people/?page=8`),
-                axios.get(`${ApiSrc}people/?page=9`)
+                axios.get(`${apiSrc}people/?page=1`),
+                axios.get(`${apiSrc}people/?page=2`),
+                axios.get(`${apiSrc}people/?page=3`),
+                axios.get(`${apiSrc}people/?page=4`),
+                axios.get(`${apiSrc}people/?page=5`),
+                axios.get(`${apiSrc}people/?page=6`),
+                axios.get(`${apiSrc}people/?page=7`),
+                axios.get(`${apiSrc}people/?page=8`),
+                axios.get(`${apiSrc}people/?page=9`)
             ])
             .then(responseArr => {
-                loadingInfo.classList.add('DisplayNone')
+                loadingInfo.classList.add("DisplayNone");
                 persons = persons.concat(
                     responseArr[0].data.results,
                     responseArr[1].data.results,
@@ -201,8 +164,7 @@ async function getAllPersons() {
                     responseArr[8].data.results
                 );
 
-                window.localStorage.setItem('persons', JSON.stringify(persons));
-
+                window.localStorage.setItem("persons", JSON.stringify(persons));
             });
     }
 }
@@ -211,259 +173,245 @@ async function getAllPersons() {
 
 ////////////////////////// Find Person /////////////////////////////
 let timeout = null;
-SearchForm.onkeyup = function (e) {
+searchForm.onkeyup = function(e) {
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
-        letsSearch(SearchForm.value);
-
+    timeout = setTimeout(function() {
+        letsSearch(searchForm.value);
     }, 700);
 };
-async function letsSearch(SearchItem) {
-    if (SearchItem == undefined || SearchItem == "") { }
-    else {
-        searchData.classList.remove("DisplayNone")
-        errorInfo.classList.add('DisplayNone')
-        const SearchUrl = `https://swapi.co/api/people/?search=${SearchItem}`;
+async function letsSearch(searchItem) {
+    if (searchItem == undefined || searchItem == "") {
+    } else {
+        searchData.classList.remove("DisplayNone");
+        errorInfo.classList.add("DisplayNone");
+        const searchUrl = `https://swapi.co/api/people/?search=${searchItem}`;
         try {
-            const response = await axios.get(SearchUrl, {
+            const response = await axios.get(searchUrl, {
                 cancelToken: new CancelToken(function executor(c) {
                     cancel = c;
                 })
             });
             cancel();
-            SearchListResults = [];
-            SearchResults.innerHTML = "";
-            response.data.results.forEach(function (person, number) {
-                let ElementList = document.createElement("p");
-                ElementList.innerHTML = `${person.name}`;
-                ElementList.setAttribute("class", `ElementList`);
+            searchListResults = [];
+            searchResults.innerHTML = "";
+            response.data.results.forEach(function(person, number) {
+                let elementList = document.createElement("p");
+                elementList.innerHTML = `${person.name}`;
+                elementList.setAttribute("class", `ElementList`);
                 person.id = number;
-                SearchResults.appendChild(ElementList);
-                SearchListResults.push(person);
+                searchResults.appendChild(elementList);
+                searchListResults.push(person);
             });
-            return searchData.classList.add("DisplayNone")
+            return searchData.classList.add("DisplayNone");
         } catch (error) {
             if (axios.isCancel(error)) {
-               
-            }          
-            errorInfo.classList.remove('DisplayNone')
-            setTimeout(function () { letsSearch(SearchItem) }, 8000);
+            }
+            errorInfo.classList.remove("DisplayNone");
+            setTimeout(function() {
+                letsSearch(searchItem);
+            }, 8000);
         }
     }
 }
-
-
-
-
 
 ////////////////////////// END Find Person //////////////////////////////
 
 /////////////////////////////   Get all info about person    /////////////////////////////////////////
 
-function getAllDataAboutPerson(dataList, personName) {
-    personCard.classList.add('DisplayNone')
-    AllPersonsButton.classList.add('DisplayEvent')    
-    dataList.forEach(function (person) {
-        if (person.name == personName) {        //////////find person  
+const getAllDataAboutPerson = (dataList, personName) => {
+    personCard.classList.add("DisplayNone");
+    allPersonsButton.classList.add("DisplayEvent");
+    dataList.forEach(function(person) {
+        if (person.name == personName) {
+            //////////find person
 
-            ChoosenPersonData = person;
-            let axiosRequestObjects = [];       /////// array of request object  
+            choosenPersonData = person;
+            let axiosRequestObjects = []; /////// array of request object
             axiosRequestObjects = axiosRequestObjects.concat(
-                ChoosenPersonData.homeworld,
-                ChoosenPersonData.starships,
-                ChoosenPersonData.vehicles,
-                ChoosenPersonData.films,
-                ChoosenPersonData.species
+                choosenPersonData.homeworld,
+                choosenPersonData.starships,
+                choosenPersonData.vehicles,
+                choosenPersonData.films,
+                choosenPersonData.species
             );
 
             function countingItems(x) {
                 if (Array.isArray(x)) {
-                    x.itemNumber = x.length
-                }
-                else {
-                    x = [`${x}`]
-                    x.itemNumber = x.length
-                    return x
+                    x.itemNumber = x.length;
+                } else {
+                    x = [`${x}`];
+                    x.itemNumber = x.length;
+                    return x;
                 }
             }
 
-            countingItems(ChoosenPersonData.homeworld)
-            countingItems(ChoosenPersonData.starships)
-            countingItems(ChoosenPersonData.vehicles)
-            countingItems(ChoosenPersonData.films)
-            countingItems(ChoosenPersonData.species)
+            countingItems(choosenPersonData.homeworld);
+            countingItems(choosenPersonData.starships);
+            countingItems(choosenPersonData.vehicles);
+            countingItems(choosenPersonData.films);
+            countingItems(choosenPersonData.species);
 
-            let ResponseArr = [];
-            function makeRequestsFromArray(arr) {
-                loadingInfo.classList.remove('DisplayNone')
+            let responseArr = [];
+            const makeRequestsFromArray = arr => {
+                loadingInfo.classList.remove("DisplayNone");
                 let index = 0;
-                function request() {
-                    return axios.get(arr[index]).then((response) => {
+                const request = () => {
+                    return axios.get(arr[index]).then(response => {
                         index++;
-                        ResponseArr.push(response)
+                        responseArr.push(response);
                         if (index >= arr.length) {
-                            return ResponseArr
+                            return responseArr;
                         }
                         return request();
                     });
-
-                }
+                };
                 return request();
-            }
-            makeRequestsFromArray(axiosRequestObjects).then((ResponseArr) => {   ///////Request
-                loadingInfo.classList.add('DisplayNone')
-                ChoosenPersonData.homeworld = []
-                let numberOfStarships = ChoosenPersonData.starships.itemNumber;
-                ChoosenPersonData.starships = []
-                let numberOfVehicles = ChoosenPersonData.vehicles.itemNumber;
-                ChoosenPersonData.vehicles = []
-                let numberOfFilms = ChoosenPersonData.films.itemNumber;
-                ChoosenPersonData.films = []
-                let numberOfSpecies = ChoosenPersonData.species.itemNumber;
-                ChoosenPersonData.species = []
-                ResponseArr.forEach(function (item, num) {
-
-                    if (num < 1) {
-                        ChoosenPersonData.homeworld.push(item.data)
-                    }
-                    else if (num >= 1 && num < (1 + numberOfStarships)) {
-                        ChoosenPersonData.starships.push(item.data)
-                    }
-
-                    else if (num >= (1 + numberOfStarships) && num < (1 + numberOfStarships + numberOfVehicles)) {
-                        ChoosenPersonData.vehicles.push(item.data)
-                    }
-
-                    else if (num >= (1 + numberOfStarships + numberOfVehicles) && num < (1 + numberOfStarships + numberOfVehicles + numberOfFilms)) {
-                        ChoosenPersonData.films.push(item.data)
-                    }
-
-                    else {
-                        ChoosenPersonData.species.push(item.data)
-                    }
-                })
-                personCard.classList.remove('DisplayNone')
-                AllPersonsButton.classList.remove('DisplayEvent')    
-
-
-
-
-            }, (error) => {
-                console.log(error);
-                loadingInfo.classList.toggle('DisplayNone')
-                errorInfo.classList.toggle('DisplayNone')
-                setTimeout(function () { getAllDataAboutPerson(dataList, personName) }, 8000);
-            });
-
-
-
-
-
+            };
+            makeRequestsFromArray(axiosRequestObjects).then(
+                responseArr => {
+                    ///////Request
+                    loadingInfo.classList.add("DisplayNone");
+                    choosenPersonData.homeworld = [];
+                    let numberOfStarships =
+                        choosenPersonData.starships.itemNumber;
+                    choosenPersonData.starships = [];
+                    let numberOfVehicles =
+                        choosenPersonData.vehicles.itemNumber;
+                    choosenPersonData.vehicles = [];
+                    let numberOfFilms = choosenPersonData.films.itemNumber;
+                    choosenPersonData.films = [];
+                    let numberOfSpecies = choosenPersonData.species.itemNumber;
+                    choosenPersonData.species = [];
+                    responseArr.forEach(function(item, num) {
+                        if (num < 1) {
+                            choosenPersonData.homeworld.push(item.data);
+                        } else if (num >= 1 && num < 1 + numberOfStarships) {
+                            choosenPersonData.starships.push(item.data);
+                        } else if (
+                            num >= 1 + numberOfStarships &&
+                            num < 1 + numberOfStarships + numberOfVehicles
+                        ) {
+                            choosenPersonData.vehicles.push(item.data);
+                        } else if (
+                            num >= 1 + numberOfStarships + numberOfVehicles &&
+                            num <
+                                1 +
+                                    numberOfStarships +
+                                    numberOfVehicles +
+                                    numberOfFilms
+                        ) {
+                            choosenPersonData.films.push(item.data);
+                        } else {
+                            choosenPersonData.species.push(item.data);
+                        }
+                    });
+                    personCard.classList.remove("DisplayNone");
+                    allPersonsButton.classList.remove("DisplayEvent");
+                },
+                error => {
+                    console.log(error);
+                    loadingInfo.classList.toggle("DisplayNone");
+                    errorInfo.classList.toggle("DisplayNone");
+                    setTimeout(function() {
+                        getAllDataAboutPerson(dataList, personName);
+                    }, 8000);
+                }
+            );
         }
-    })
-
-
-}
-/////////////////////////////END   Get all info about person    /////////////////////////////////////////
-
+    });
+};
+/////////////////////////////END   Get all info about person    /////////////////////////////
 
 ///////////////////////////////////////////////////////////////
 ///////////////////     END  API interaction
 ///////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
-/////////////////////Table Generator 
+/////////////////////Table Generator
 /////////////////////////////////////////////////////////////
-const TableGenerator = (person, parmArr, ObjNumber) => {
-    let NewTableParameters = document.createElement("ul");
-    let NewTableParametersValue = document.createElement("ul");
-    InfoTable.innerHTML = "";
+const TableGenerator = (person, parmArr, objNumber) => {
+    let newTableParameters = document.createElement("ul");
+    let newTableParametersValue = document.createElement("ul");
+    infoTable.innerHTML = "";
     ///////////////////Array object
     if (Array.isArray(person)) {
-        person.forEach(function (obj, num) {
-            if (num == ObjNumber) {
-
+        person.forEach(function(obj, num) {
+            if (num == objNumber) {
                 let arreyOfParam = Object.keys(obj);
-                parmArr.forEach(function (param) {
-                    arreyOfParam.forEach(function (item, number) {
+                parmArr.forEach(function(param) {
+                    arreyOfParam.forEach(function(item, number) {
                         if (item.includes(param)) {
                             ///create parameters item
 
-                            let ParamElementList = document.createElement("li");
-                            ParamElementList.innerHTML = `${arreyOfParam[number]}`;
-                            ParamElementList.setAttribute(
+                            let paramElementList = document.createElement("li");
+                            paramElementList.innerHTML = `${arreyOfParam[number]}`;
+                            paramElementList.setAttribute(
                                 "class",
                                 `ListHeader`
                             );
 
-                            NewTableParameters.appendChild(ParamElementList);
+                            newTableParameters.appendChild(paramElementList);
                             ///create parameters value item
-                            let ParamValueElementList = document.createElement(
+                            let paramValueElementList = document.createElement(
                                 "li"
                             );
-                            ParamValueElementList.innerHTML = `${
+                            paramValueElementList.innerHTML = `${
                                 obj[arreyOfParam[number]]
-                                }`;
-                            ParamValueElementList.setAttribute(
+                            }`;
+                            paramValueElementList.setAttribute(
                                 "class",
                                 `ListItem`
                             );
-                            NewTableParametersValue.appendChild(
-                                ParamValueElementList
+                            newTableParametersValue.appendChild(
+                                paramValueElementList
                             );
-
-
                         }
                     });
                 });
             }
-
-
         });
     } else {
         /////////////////////// Single Object
         let arreyOfParam = Object.keys(person);
-        parmArr.forEach(function (param) {
-            arreyOfParam.forEach(function (item, number) {
+        parmArr.forEach(function(param) {
+            arreyOfParam.forEach(function(item, number) {
                 if (item.includes(param)) {
                     ///create parameters item
-                    let ParamElementList = document.createElement("li");
-                    ParamElementList.innerHTML = `${arreyOfParam[number]}`;
-                    ParamElementList.setAttribute("class", `ListHeader`);
+                    let paramElementList = document.createElement("li");
+                    paramElementList.innerHTML = `${arreyOfParam[number]}`;
+                    paramElementList.setAttribute("class", `ListHeader`);
 
-                    NewTableParameters.appendChild(ParamElementList);
+                    newTableParameters.appendChild(paramElementList);
                     ///create parameters value item
 
-                    let ParamValueElementList = document.createElement("li");
-                    ParamValueElementList.innerHTML = `${
+                    let paramValueElementList = document.createElement("li");
+                    paramValueElementList.innerHTML = `${
                         person[arreyOfParam[number]]
-                        }`;
-                    ParamValueElementList.setAttribute("class", `ListItem`);
-                    NewTableParametersValue.appendChild(ParamValueElementList);
+                    }`;
+                    paramValueElementList.setAttribute("class", `ListItem`);
+                    newTableParametersValue.appendChild(paramValueElementList);
                 }
             });
         });
     }
 
-    NewTableParameters.setAttribute("id", `PersonHeaderList`);
-    InfoTable.appendChild(NewTableParameters);
-    NewTableParametersValue.setAttribute("id", `PersonItemList`);
-    InfoTable.appendChild(NewTableParametersValue);
+    newTableParameters.setAttribute("id", `PersonHeaderList`);
+    infoTable.appendChild(newTableParameters);
+    newTableParametersValue.setAttribute("id", `PersonItemList`);
+    infoTable.appendChild(newTableParametersValue);
 };
 
-
 //////////////////////////////////////////////////////////////
-/////////////////////END Table Generator 
+/////////////////////END Table Generator
 /////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 ///////////////////// Additional functions
 /////////////////////////////////////////////////////////////
 
-const showVehicles = (e) => {
-
+const showVehicles = e => {
     TableGenerator(
-        ChoosenPersonData.vehicles,
+        choosenPersonData.vehicles,
         [
             "name",
             "cargo_capacity",
@@ -480,25 +428,12 @@ const showVehicles = (e) => {
         ],
         e - 1
     );
-    if (ChoosenPersonData.vehicles.length == 0) {
-        let emptyTable = document.createElement('p');
-        emptyTable.innerHTML = "That table is empty";
-        InfoTable.appendChild(emptyTable);
-    }
-    let cardsNumberWrapper = document.createElement("div");
-    cardsNumberWrapper.setAttribute("class", `CardsNumberWrapper`);
-    InfoTable.prepend(cardsNumberWrapper)
-    for (let i = 0; i < ChoosenPersonData.vehicles.length; i++) {
 
-        let numberOfCard = document.createElement("p");
-        numberOfCard.innerHTML = `${i + 1}`
-        cardsNumberWrapper.appendChild(numberOfCard)
-        numberOfCard.addEventListener("click", e => { showVehicles(e.target.innerHTML) })
-    }
-}
-const showStarships = (e) => {
+    generateCardNumbers(choosenPersonData.vehicles, showVehicles);
+};
+const showStarships = e => {
     TableGenerator(
-        ChoosenPersonData.starships,
+        choosenPersonData.starships,
         [
             "name",
             "model",
@@ -515,26 +450,11 @@ const showStarships = (e) => {
         ],
         e - 1
     );
-    if (ChoosenPersonData.starships.length == 0) {
-        let emptyTable = document.createElement('p');
-        emptyTable.innerHTML = "That table is empty";
-        InfoTable.appendChild(emptyTable);
-    }
-    let cardsNumberWrapper = document.createElement("div");
-    cardsNumberWrapper.setAttribute("class", `CardsNumberWrapper`);
-    InfoTable.prepend(cardsNumberWrapper)
-    for (let i = 0; i < ChoosenPersonData.starships.length; i++) {
-
-        let numberOfCard = document.createElement("p");
-        numberOfCard.innerHTML = `${i + 1}`
-        cardsNumberWrapper.appendChild(numberOfCard)
-        numberOfCard.addEventListener("click", e => { showStarships(e.target.innerHTML) })
-    }
-}
-
+    generateCardNumbers(choosenPersonData.starships, showStarships);
+};
 
 const showPersonTable = () => {
-    TableGenerator(ChoosenPersonData, [
+    TableGenerator(choosenPersonData, [
         "name",
         "height",
         "mass",
@@ -544,25 +464,80 @@ const showPersonTable = () => {
         "birth_year",
         "gender"
     ]);
-
-}
+};
 const showSpeciesTable = () => {
-TableGenerator(
-    ChoosenPersonData.species,
-    [
-        "average_height",
-        "average_lifespan",
-        "classification",
-        "designation",
-        "eye_colors",
-        "hair_colors",
-        "language",
-        "name,skin_colors"
-    ],
-    0
-);}
+    TableGenerator(
+        choosenPersonData.species,
+        [
+            "average_height",
+            "average_lifespan",
+            "classification",
+            "designation",
+            "eye_colors",
+            "hair_colors",
+            "language",
+            "name,skin_colors"
+        ],
+        0
+    );
+};
 
+const generatePersonCardMenu = () => {
+    starshipsInfoButton.innerHTML = "Starships Info";
+    starshipsInfoButton.setAttribute("class", `PersonCardMenu`);
+    personCard.prepend(starshipsInfoButton);
 
+    vehiclesInfoButton.innerHTML = "Vehicles Info";
+    vehiclesInfoButton.setAttribute("class", `PersonCardMenu`);
+    personCard.prepend(vehiclesInfoButton);
+
+    speciesInfoButton.innerHTML = "Species Info";
+    speciesInfoButton.setAttribute("class", `PersonCardMenu`);
+    personCard.prepend(speciesInfoButton);
+
+    personalInfoButton.innerHTML = "Personal Info";
+    personalInfoButton.setAttribute("class", `PersonCardMenu`);
+    personCard.prepend(personalInfoButton);
+};
+
+const ToggleCard = e => {
+    if (e.className == "NumberCard") {
+        let numberHaveActiveClass = document.querySelector(".ActiveNumber");
+        if (numberHaveActiveClass) {
+            numberHaveActiveClass.classList.remove("ActiveNumber");
+        }
+        let clickElement = e;
+        clickElement.classList.add("ActiveNumber");
+    } else if (e.className == "PersonCardMenu") {
+        let haveActiveClass = document.querySelector(".ActiveElement");
+        if (haveActiveClass) {
+            haveActiveClass.classList.remove("ActiveElement");
+        }
+        let clickElement = e;
+        clickElement.classList.add("ActiveElement");
+    }
+};
+const generateCardNumbers = (param, showFunction) => {
+    if (param.length == 0) {
+        let emptyTable = document.createElement("p");
+        emptyTable.innerHTML = "That table is empty";
+        infoTable.appendChild(emptyTable);
+    }
+    let cardsNumberWrapper = document.createElement("div");
+    cardsNumberWrapper.setAttribute("class", `CardsNumberWrapper`);
+    infoTable.prepend(cardsNumberWrapper);
+    if (!(param.length == 1)) {
+        for (let i = 0; i < param.length; i++) {
+            let numberOfCard = document.createElement("p");
+            numberOfCard.setAttribute("class", `NumberCard`);
+            numberOfCard.innerHTML = `${i + 1}`;
+            cardsNumberWrapper.appendChild(numberOfCard);
+            numberOfCard.addEventListener("click", e => {
+                showFunction(e.target.innerHTML);
+            });
+        }
+    }
+};
 //////////////////////////////////////////////////////////////
 ///////////////////// END Additional functions
 /////////////////////////////////////////////////////////////
