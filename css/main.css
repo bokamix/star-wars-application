@@ -363,7 +363,7 @@
  }
 
  .PersonCardMenu:hover {
-     color: rosybrown;
+     color: goldenrod;
  }
 
  #AllPersonWrapper {
@@ -388,6 +388,7 @@
 
  #ErrorInfo {
      color: red;
+     margin-top:15px;
  }
 
  .CardsNumberWrapper {
@@ -408,7 +409,10 @@
  #LoadingInfo {
      margin-top: 10px;
  }
-
+.emptyTableInfo{
+    width:100%;
+    text-align: center;
+}
 
  /* ==========================================================================
    Media Queries
@@ -478,7 +482,7 @@
 
  .ActiveElement {
      color: goldenrod;
- }
+ }ld
 
  .ActiveNumber {
      color: goldenrod !important;
