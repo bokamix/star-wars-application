@@ -13,6 +13,12 @@ Application written in pure Java Script.
 Bable was used to optimize the code.
 The application performs queries to https://swapi.co/.
 
+main.js is the version of the code after conversion by Babel.
+original code you can find on main-beforeBabel.js
+The folder tree structure is determined by Netlify.
+Netlify builds a preview of files on github.
+
+
 # Moduls of JS
 The code is divided into the following sections:
 1. Application Init - Initializes the table view,
